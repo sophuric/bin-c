@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+IFS=''
+
+case "${1:-}" in
+release)
+	cc_args=(-O2)
+	;;
+debug)
+	cc_args=(-Og -g)
+	;;
+*)
+	echo "./build (release|debug)" >&2
+	exit 1
+	;;
+esac
+
+ROOT="$PWD"
+
+shift
+mkdir -p out
+cc "${cc_args[@]}" "$@" -Wall -Wpedantic -Werror -Wno-error=unused-{{but-set-,}{parameter,variable},const-variable,function,label,local-typedefs,macros,value,variable} \
+	src/{main,lib}.c -o out/bin-c

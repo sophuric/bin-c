@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+IFS=''
+
+[[ -x out/bin-c ]] || ./build release
+
+out/bin-c "$@"
