@@ -4,6 +4,9 @@ set -u
 set -o pipefail
 IFS=''
 
-[[ -x out/bin-c ]] || ./build release
+BIN_C_DIR="${0%/*}"
+BIN_C_DIR="${BIN_C_DIR:-.}"
 
-out/bin-c "$@"
+(cd -- "$BIN_C_DIR" && { [[ -x ./out/bin-c ]] || ./build release; })
+
+"$BIN_C_DIR"/out/bin-c "$@"
