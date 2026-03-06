@@ -27,7 +27,7 @@ char *bin_c_sanitise_variable_name_n(const char *in, size_t in_len, char *out);
  * `get_char` is a function to get the next available character. This should return an `unsigned char` value, EOF at end of stream, or another negative value such as BIN_C_ERROR for error.
  * This allows for streaming the file directly to this function. This can be NULL, which makes the variables `extern`.
  * `data_type` and `data_len_type` are the C type of those variables respectively. If this is NULL, the variable is not generated.
- * The first instance of `%` for the types are replaced with the variable name, for example: `"unsigned char %[]"` and `"size_t %_len"`.
+ * The first instance of `%` for the types are replaced with the variable name, for example: `"const unsigned char %[]"` and `"const size_t %_len"`.
  * The last return value of `callback` is the return value of this function.
  */
 bool bin_c_encode_data(bool (*callback)(const char *buffer, size_t buffer_len, void *user_data), const char *variable_name,

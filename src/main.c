@@ -25,7 +25,7 @@ int main(int argc, char *const *argv) {
 	const char *var_name = NULL;
 	bool is_include = false;
 
-	static const char *default_data_type = "unsigned char %[]", *default_data_len_type = "size_t %_len";
+	static const char *default_data_type = "const unsigned char %[]", *default_data_len_type = "const size_t %_len";
 	const char *data_type = default_data_type, *data_len_type = default_data_len_type;
 
 	// argument handling
